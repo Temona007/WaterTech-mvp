@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaterTech dMRV — Water Credits Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login View -->
+    <section id="login-view" class="view active">
+      <div class="login-container">
+        <div class="login-card">
+          <div class="logo">
+            <span class="logo-icon">💧</span>
+            <h1>WaterTech dMRV</h1>
+            <p class="tagline">Sovereign Water Credits Platform</p>
+          </div>
+          <div class="login-form">
+            <div class="form-group">
+              <label for="quick-login">Quick Login</label>
+              <select id="quick-login">
+                <option value="">— Choose account —</option>
+                <option value="owner">Asset Owner / Hotel</option>
+                <option value="admin">GIAS Admin</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard View -->
+    <section id="dashboard-view" class="view">
+      <header class="header">
+        <div class="header-left">
+          <span class="logo-small">💧</span>
+          <h2>WaterTech dMRV</h2>
+        </div>
+        <div class="header-right">
+          <span id="weather-badge" class="weather-badge">Loading UAE weather…</span>
+          <span id="simulation-badge" class="simulation-badge hidden">Simulation: OFF</span>
+          <span id="user-role" class="role-badge"></span>
+          <button id="logout-btn" class="btn btn-ghost">Log Out</button>
+        </div>
+      </header>
+
+      <!-- Admin-only: Simulation Panel -->
+      <div id="simulation-panel" class="simulation-panel hidden">
+        <div class="panel-header">
+          <h3>Simulation Mode</h3>
+          <div class="sim-controls">
+            <label class="toggle-label">
+              <input type="checkbox" id="sim-toggle">
+              <span class="toggle-slider"></span>
+              Enable Simulation
+            </label>
+            <div id="sim-mode-buttons" class="sim-mode-buttons">
+              <button id="sim-clean" class="btn btn-outline" disabled>Clean Data</button>
+              <button id="sim-malicious" class="btn btn-outline btn-danger" disabled>Malicious Data</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main class="main">
+        <div class="dashboard-grid">
+          <!-- Summary Cards -->
+          <div class="card summary-card">
+            <h4>Total Water Credits</h4>
+            <p id="total-credits" class="big-number">0</p>
+            <span class="sub">m³ verified</span>
+          </div>
+          <div class="card summary-card">
+            <h4>Verified Today</h4>
+            <p id="verified-today" class="big-number">0</p>
+            <span class="sub">readings</span>
+          </div>
+          <div class="card summary-card">
+            <h4>Flagged</h4>
+            <p id="flagged-count" class="big-number warning">0</p>
+            <span class="sub">fraud attempts</span>
+          </div>
+
+          <!-- Assets Table -->
+          <div class="card table-card full-width">
+            <h4>Assets</h4>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Asset</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Last Reading</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="assets-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Audit Trail -->
+          <div class="card table-card full-width">
+            <h4>Audit Trail — Verification Log</h4>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Asset</th>
+                    <th>Inputs</th>
+                    <th>Result</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/triangulation.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
